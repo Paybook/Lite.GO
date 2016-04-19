@@ -1,0 +1,15 @@
+bee   :1.4.1
+beego :1.6.1
+Go    :go version go1.6.1 darwin/amd64
+
+2016/04/18 18:17:24 [[94mINFO[0m] Uses 'lite' as 'appname'
+2016/04/18 18:17:24 [[94mINFO[0m] Initializing watcher...
+2016/04/18 18:17:24 [[94mTRAC[0m] Directory([93m/Users/claudio/Documents/Paybook/go/src/paybook.com/lite/controllers[0m)
+2016/04/18 18:17:24 [[94mTRAC[0m] Directory([93m/Users/claudio/Documents/Paybook/go/src/paybook.com/lite[0m)
+2016/04/18 18:17:24 [[94mTRAC[0m] Directory([93m/Users/claudio/Documents/Paybook/go/src/paybook.com/lite/routers[0m)
+2016/04/18 18:17:24 [[94mTRAC[0m] Directory([93m/Users/claudio/Documents/Paybook/go/src/paybook.com/lite/tests[0m)
+2016/04/18 18:17:24 [[94mINFO[0m] Start building...
+2016/04/18 18:17:26 [[92mSUCC[0m] Build was successful
+2016/04/18 18:17:26 [[94mINFO[0m] Restarting lite ...
+2016/04/18 18:17:26 [[94mINFO[0m] ./lite is running...
+2016/04/18 18:17:26 [1;34m[asm_amd64.s:1998][I] http server Running on :9090[0m
