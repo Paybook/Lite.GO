@@ -40,3 +40,4 @@ $RECYCLE.BIN/
 *.msm
 *.msp
 output/
+output/*
