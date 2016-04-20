@@ -1,8 +1,11 @@
 package controllers
 
 import (
+	"encoding/json"
+
 	"github.com/astaxie/beego"
 	"paybook.com/lite/models"
+	"paybook.com/lite/services"
 )
 
 // UsersController definition
@@ -30,10 +33,43 @@ func (c *UsersController) Login() {
 		beego.Debug("User: ", u.Email, u.Password)
 	}
 
-	if u.Auth() {
-		c.Layout = "inc/layout.tpl"
-		c.TplName = "dashboard.tpl"
-		c.SetSession("paybook-lite", true)
+	err, IDUser := u.Auth()
+
+	if err {
+		url := beego.AppConfig.String("pbsync_base_url") +
+			"sessions?api_key=" + beego.AppConfig.String("pbsync_api_key") +
+			"&id_user=" + string(IDUser)
+
+		api := models.API{}
+
+		services := services.Services{}
+		res := services.Post(url)
+		err := json.Unmarshal([]byte(res), &api)
+		if err != nil {
+			beego.Info("Error parsing API post output: %s - %s", err, res)
+		}
+
+		if api.Code == 200 {
+			beego.Info(api)
+
+			tokenAPI := models.TokenAPI{}
+			err = json.Unmarshal([]byte(api.Response), &tokenAPI)
+			if err != nil {
+				beego.Info("Error parsing tokenAPI response: %s - %s", err, res)
+			}
+
+			beego.Info("Setting token: ", tokenAPI.Token)
+			c.SetSession("token", tokenAPI.Token)
+			c.SetSession("paybook-lite", true)
+
+			c.Data["Token"] = tokenAPI.Token
+			c.Layout = "inc/layout.tpl"
+			c.TplName = "dashboard.tpl"
+
+		} else {
+			beego.Error("Error: on create session on pbsync")
+		}
+
 	} else {
 		c.Redirect("/", 302)
 	}

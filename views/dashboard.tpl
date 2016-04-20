@@ -10,7 +10,7 @@
               <script type="text/javascript">
                 // Uncoment to use development environment
                 pbWidget.setDev();
-
+                pbWidget.setToken('{{ .Token }}');
                 pbWidget.chooseBank();
               </script>
               <div id="paybook-container"></div>
