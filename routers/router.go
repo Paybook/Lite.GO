@@ -8,6 +8,9 @@ import (
 func init() {
 	beego.Router("/", &controllers.MainController{})
 	beego.Router("/login", &controllers.UsersController{}, "post:Login")
+	beego.Router("/dashboard", &controllers.UsersController{}, "get:Dashboard")
+	beego.Router("/transactions/", &controllers.TransactionController{})
+	beego.Router("/transactions/view/:id_account", &controllers.TransactionController{}, "get:View")
 	beego.SetStaticPath("/static", "static")
 	beego.SetStaticPath("/img", "img")
 	beego.SetStaticPath("/css", "css")

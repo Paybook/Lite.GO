@@ -16,8 +16,8 @@ func init() {
 }
 
 func main() {
-	u := models.User{}
-	u.Init()
+	users := models.User{}
+	users.Init()
 
 	beego.Run()
 }

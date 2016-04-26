@@ -17,7 +17,7 @@ app.directive('menu', ['Session', function(Session) {
         element.append('<nav class="navbar navbar-default">' +
                       ' <div class="container-fluid">' +
                       '  <ul class="nav navbar-nav">' +
-                      '   <li><a href="/accounts">Dashboard</a></li>'+
+                      '   <li><a href="/dashboard">Dashboard</a></li>'+
                       '   <li><a href="/logout">Logout</a></li>' +
                       '  </ul>' +
                       ' </div>' +
@@ -39,10 +39,13 @@ app.factory('dataTable',['$filter','NgTableParams','$http', function($filter,NgT
         }, {
           total: 0,
           getData: function($defer, params) {
+            var request = {};
             // Limit
+            request.limit = params.count();
             var query = "?limit=" + params.count();
             if (params.page() > 1){
               var skip = params.count() * (params.page() - 1);
+              request.skipe = skip;
               query = query + "&skip=" + skip;
             }
 
@@ -55,6 +58,7 @@ app.factory('dataTable',['$filter','NgTableParams','$http', function($filter,NgT
               if (sortSplit.length > 0){
                 keys[0] = sortSplit[0];
               }
+              request.sort = keys[0] + " " + order.toUpperCase();
               query = query + "&sort=" + keys[0] + " " + order.toUpperCase();
             }
 
@@ -66,10 +70,12 @@ app.factory('dataTable',['$filter','NgTableParams','$http', function($filter,NgT
               var field = keys[0];
               where = '{"' + field  + '":{"contains":"' + filter[keys[0]]  + '"}}';
               query = query + "&where=" + where;
+              request.where = where;
             }
 
             if (id !== null){
               query = query + "&" + id;
+              request.id = id;
             }
 
             $http.get("/" + controller + "/count").then(function(result,status){
@@ -77,7 +83,18 @@ app.factory('dataTable',['$filter','NgTableParams','$http', function($filter,NgT
               params.total(reference.total);
             });
 
-            $http.get("/" + controller + query).then(function(result,status){
+            console.log(request);
+            // $http.get("/" + controller, JSON.stringify(request)).then(function(result,status){
+            //   var orderedData = params.sorting() ? $filter('orderBy')(result.data, params.orderBy()) : result.data;
+            //   total = params.total();
+            //   $defer.resolve(result.data);
+            // });
+
+            $http({
+              method: 'GET',
+              url: "/" + controller,
+              params: request
+            }).then(function(result,status){
               var orderedData = params.sorting() ? $filter('orderBy')(result.data, params.orderBy()) : result.data;
               total = params.total();
               $defer.resolve(result.data);

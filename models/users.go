@@ -27,7 +27,7 @@ func (u *User) TableName() string {
 
 // Init models
 func (u *User) Init() {
-	fmt.Println("Init models")
+	beego.Info("Init models")
 
 	// orm.Debug = true
 	orm.RegisterDriver("sqlite3", orm.DRSqlite)
@@ -35,12 +35,12 @@ func (u *User) Init() {
 	// set default database
 	orm.RegisterDataBase("default", "sqlite3", "data.db")
 
-	orm.RegisterModel(new(User))
+	orm.RegisterModel(new(User), new(Account), new(Transaction))
 
 	orm.RunCommand()
 
 	name := "default"
-	force := true
+	force := false
 	verbose := true
 
 	err := orm.RunSyncdb(name, force, verbose)
@@ -71,7 +71,7 @@ func (u *User) Create() {
 		api := API{}
 		err = json.Unmarshal([]byte(res), &api)
 		if err != nil {
-			beego.Info("Error parsing API post output: %s - %s", err, res)
+			beego.Error("Error parsing API post output: %s - %s", err, res)
 		}
 
 		if api.Code == 200 {
@@ -79,7 +79,7 @@ func (u *User) Create() {
 			userAPI := UserAPI{}
 			err = json.Unmarshal([]byte(api.Response), &userAPI)
 			if err != nil {
-				beego.Info("Error parsing userAPI response: %s - %s", err, res)
+				beego.Error("Error parsing userAPI response: %s - %s", err, res)
 			}
 
 			u.IDUser = userAPI.IDUser
@@ -114,10 +114,10 @@ func (u *User) find() bool {
 	o := orm.NewOrm()
 	err := o.QueryTable("users").Filter("email", u.Email).One(&user)
 	if err == nil {
+		beego.Error("ERR: %v\n", err)
 		return false
 	}
-	fmt.Println("User name", user.ID, user.Email)
-	fmt.Printf("ERR: %v\n", err)
+	beego.Info("User info: ", user.ID, user.Email)
 
 	return true
 }
@@ -128,7 +128,7 @@ func (u *User) Auth() (bool, string) {
 	o := orm.NewOrm()
 	err := o.QueryTable("users").Filter("email", u.Email).One(&user)
 	if err == nil {
-		fmt.Println("User name", user.ID, user.Email)
+		beego.Info("User info: ", user.ID, user.Email)
 
 		if comparePass(user.Password, u.Password) {
 			return true, user.IDUser

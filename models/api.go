@@ -20,3 +20,36 @@ type UserAPI struct {
 type TokenAPI struct {
 	Token string `json:"token"`
 }
+
+// AccountsAPI ...
+type AccountsAPI struct {
+	IDAccount  string          `json:"id_account"`
+	IDUser     string          `json:"id_user"`
+	IDExternal string          `json:"id_external"`
+	IDSite     string          `json:"id_site"`
+	Site       json.RawMessage `json:"site"`
+	ISDisable  bool            `json:"is_disable"`
+	Name       string          `json:"name"`
+	Number     string          `json:"number"`
+	Balance    float64         `json:"balance"`
+	DTCreate   string          `json:"dt_create"`
+	DTModify   string          `json:"dt_modify"`
+}
+
+// TransactionsAPI ...
+type TransactionsAPI struct {
+	IDTransaction          string  `json:"id_transaction"`
+	IDUser                 string  `json:"id_user"`
+	IDExternal             string  `json:"id_external"`
+	IDSite                 string  `json:"id_site"`
+	IDSiteOrganization     string  `json:"id_site_organization"`
+	IDSiteOrganizationType string  `json:"id_site_organization_type"`
+	IDAccount              string  `json:"id_account"`
+	IDAccountType          string  `json:"id_account_type"`
+	Description            string  `json:"description"`
+	DTTransaction          int64   `json:"dt_transaction"`
+	Period                 int64   `json:"period"`
+	Amount                 float64 `json:"amount"`
+	DTCreate               string  `json:"dt_create"`
+	DTModify               string  `json:"dt_modify"`
+}

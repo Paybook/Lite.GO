@@ -10,7 +10,7 @@
               <script type="text/javascript">
                 // Uncoment to use development environment
                 pbWidget.setDev();
-                pbWidget.setToken('{{ .Token }}');
+                pbWidget.setToken('<<< .Token >>>');
                 pbWidget.chooseBank();
               </script>
               <div id="paybook-container"></div>
@@ -26,7 +26,10 @@
             </div>
             <div class="panel-body">
               <div class="list-group">
-
+                <<< range $index, $element := .Accounts >>>
+                  <button type="button" class="list-group-item" ng-click="getTransactions('<<< $element.IDAccount >>>')">
+                  <<< $element.Name >>>
+                <<< end >>>
               </div>
             </div>
           </div>

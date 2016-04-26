@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="pbApp">
   <head>
-    <title>Paybook Lite!</title>
+    <title>Paybook LiteGO!</title>
 
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 
@@ -15,7 +15,7 @@
 
   <body>
     <div menu></div>
-    {{.LayoutContent}}
+    <<< .LayoutContent >>>
 
     <!-- inject:js -->
     <script src="/static/js/dependencies/lib.min.js"></script>
