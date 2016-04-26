@@ -43,6 +43,6 @@ pbsync_files_url = "https://s.paybook.com"
 6. Add a site account
 
 ## Notes
-If you want to browse the database where the info is saved:
+If you want to browse the database where the info is saved:<return>
 1. cd **$GOPATH/src/paybook.com/lite**
 2. sqlite3 data.db
