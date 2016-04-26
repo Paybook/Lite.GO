@@ -15,7 +15,6 @@ A very simple and light interface to demonstrate how to take advantage of the Pa
 3. go install paybook.com/lite
 3. cd $GOPATH/src/paybook.com/lite
 4. npm install
-5. gulp
 
 ## Configure
 1. Create conf/app.conf file with the following content

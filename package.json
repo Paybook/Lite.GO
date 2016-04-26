@@ -28,6 +28,6 @@
     "stream-series": "^0.1.1"
   },
   "scripts": {
-    "postinstall": "./node_modules/.bin/bower install"
+    "postinstall": "./node_modules/.bin/bower install; gulp"
   }
 }
