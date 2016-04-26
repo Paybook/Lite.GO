@@ -42,7 +42,6 @@ pbsync_files_url = "https://s.paybook.com"
 5. Login with the new user account [http://localhost:9090/login](http://localhost:9090/login)
 6. Add a site account
 
-## Notes
-If you want to browse the database where the info is saved:<return>
+## (Optional) Browse local data base
 1. cd **$GOPATH/src/paybook.com/lite**
 2. sqlite3 data.db
