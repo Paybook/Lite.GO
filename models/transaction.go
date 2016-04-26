@@ -43,14 +43,12 @@ func (t *Transaction) GetAPI(token string) {
 	if err != nil {
 		beego.Error("Error parsing API post output: ", err, res)
 	}
-	beego.Debug(string(api.Response))
 
 	transactionsAPI := []TransactionsAPI{}
 	err = json.Unmarshal([]byte(api.Response), &transactionsAPI)
 	if err != nil {
 		beego.Error("Error parsing TransactionsAPI post output: ", err, api.Response)
 	}
-	beego.Debug(transactionsAPI)
 
 	for _, value := range transactionsAPI {
 
@@ -76,14 +74,33 @@ func (t *Transaction) GetAPI(token string) {
 }
 
 // Get ...
-func (t *Transaction) Get(IDAccount string) []Transaction {
+func (t *Transaction) Get(IDAccount, OrderBy string, Limit, Skip int) []Transaction {
 	o := orm.NewOrm()
 	transactions := []Transaction{}
 
-	qs, err := o.QueryTable("transactions").Filter("id_account", IDAccount).All(&transactions)
+	qs := o.QueryTable("transactions").Filter("id_account", IDAccount).Limit(Limit, Skip)
+
+	if len(OrderBy) > 0 {
+		qs = qs.OrderBy(OrderBy)
+	}
+
+	_, err := qs.All(&transactions)
+
 	if err == nil {
 		beego.Error("Error reading transactions: ", err, qs)
 	}
 
 	return transactions
+}
+
+// Count ...
+func (t *Transaction) Count(IDAccount string) int64 {
+	o := orm.NewOrm()
+
+	count, err := o.QueryTable("transactions").Filter("id_account", IDAccount).Count()
+	if err != nil {
+		beego.Error("Error counting transactions: ", err)
+	}
+
+	return count
 }

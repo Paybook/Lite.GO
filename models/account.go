@@ -18,6 +18,8 @@ type Account struct {
 	Name       string  `orm:"column(name)"`
 	Number     string  `orm:"column(number)"`
 	Balance    float64 `orm:"column(balance);real"`
+	SiteName   string  `orm:"column(site_name))"`
+	SiteAvatar string  `orm:"column(site_avatar))"`
 	DTCreate   string  `orm:"column(dt_create);datetime)"`
 	DTModify   string  `orm:"column(dt_modify);datetime)"`
 }
@@ -58,6 +60,8 @@ func (a *Account) GetAPI(token string) {
 		account.Name = value.Name
 		account.Number = value.Number
 		account.Balance = value.Balance
+		account.SiteName = value.Site.Name
+		account.SiteAvatar = value.Site.Avatar
 
 		o := orm.NewOrm()
 		id, err := o.Insert(account)
@@ -77,4 +81,17 @@ func (a *Account) Get() []Account {
 	}
 
 	return accounts
+}
+
+// GetOne ...
+func (a *Account) GetOne(IdAccount string) Account {
+	o := orm.NewOrm()
+	account := Account{IDAccount: IdAccount}
+
+	err := o.Read(&account)
+	if err == nil {
+		beego.Error("Account not found: ", err, IdAccount)
+	}
+
+	return account
 }

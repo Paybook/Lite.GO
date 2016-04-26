@@ -28,6 +28,8 @@
               <div class="list-group">
                 <<< range $index, $element := .Accounts >>>
                   <button type="button" class="list-group-item" ng-click="getTransactions('<<< $element.IDAccount >>>')">
+                  <img src="<<< $.Host >>><<< $element.SiteAvatar >>>" class="site-avatar">
+                  <<< $element.SiteName >>>.
                   <<< $element.Name >>>
                 <<< end >>>
               </div>

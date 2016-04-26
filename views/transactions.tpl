@@ -1,5 +1,7 @@
 <div ng-controller="transactionsController" ng-init="id_account='<<< .IDAccount >>>';">
-  <!-- <img src="<%= host %><%= account.site.avatar %>" class="site-avatar"> -->
+  <img src="<<< .Host >>><<< .Account.SiteAvatar >>>" class="site-avatar">
+  <<< .Account.SiteName >>>
+  <<< .Account.Name >>>
   <h4 class="page-header">Transactions: </h4>
   <table ng-table="tableParams" class="table table-responsive table-inverse set-bg">
     <tr ng-repeat="row in $data">

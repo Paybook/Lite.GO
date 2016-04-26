@@ -59,6 +59,9 @@ func (c *UsersController) Login() {
 			c.SetSession("token", tokenAPI.Token)
 			c.SetSession("paybook-lite", true)
 
+			account := models.Account{}
+			account.GetAPI(tokenAPI.Token)
+
 			transaction := models.Transaction{}
 			transaction.GetAPI(tokenAPI.Token)
 
@@ -73,7 +76,7 @@ func (c *UsersController) Login() {
 	}
 }
 
-// Dashboard
+// Dashboard ...
 func (c *UsersController) Dashboard() {
 	c.Data["Token"] = c.GetSession("token")
 
@@ -83,6 +86,8 @@ func (c *UsersController) Dashboard() {
 
 	accounts := models.Account{}
 	c.Data["Accounts"] = accounts.Get()
+
+	c.Data["Host"] = beego.AppConfig.String("pbsync_files_url")
 
 	c.Layout = "inc/layout.tpl"
 	c.TplName = "dashboard.tpl"

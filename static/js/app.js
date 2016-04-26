@@ -78,27 +78,31 @@ app.factory('dataTable',['$filter','NgTableParams','$http', function($filter,NgT
               request.id = id;
             }
 
-            $http.get("/" + controller + "/count").then(function(result,status){
-              reference.total = result.data.count;
+            $http.get("/" + controller + "/count/" + id).then(function(result,status){
+              reference.total = result.data;
               params.total(reference.total);
             });
 
-            console.log(request);
-            // $http.get("/" + controller, JSON.stringify(request)).then(function(result,status){
-            //   var orderedData = params.sorting() ? $filter('orderBy')(result.data, params.orderBy()) : result.data;
-            //   total = params.total();
-            //   $defer.resolve(result.data);
-            // });
+            var config = {
+             params: request,
+             headers : {'Accept' : 'application/json'}
+            };
 
-            $http({
-              method: 'GET',
-              url: "/" + controller,
-              params: request
-            }).then(function(result,status){
+            $http.get("/" + controller, config).then(function(result,status){
               var orderedData = params.sorting() ? $filter('orderBy')(result.data, params.orderBy()) : result.data;
               total = params.total();
               $defer.resolve(result.data);
             });
+
+            // $http({
+            //   method: 'GET',
+            //   url: "/" + controller,
+            //   params: request
+            // }).then(function(result,status){
+            //   var orderedData = params.sorting() ? $filter('orderBy')(result.data, params.orderBy()) : result.data;
+            //   total = params.total();
+            //   $defer.resolve(result.data);
+            // });
 
           }
         });

@@ -11,6 +11,7 @@ func init() {
 	beego.Router("/dashboard", &controllers.UsersController{}, "get:Dashboard")
 	beego.Router("/transactions/", &controllers.TransactionController{})
 	beego.Router("/transactions/view/:id_account", &controllers.TransactionController{}, "get:View")
+	beego.Router("/transactions/count/:id_account", &controllers.TransactionController{}, "get:Count")
 	beego.SetStaticPath("/static", "static")
 	beego.SetStaticPath("/img", "img")
 	beego.SetStaticPath("/css", "css")

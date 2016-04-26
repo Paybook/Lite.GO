@@ -21,19 +21,28 @@ type TokenAPI struct {
 	Token string `json:"token"`
 }
 
+// SiteAPI ...
+type SiteAPI struct {
+	IDSite    string `json:"id_site""`
+	Avatar    string `json:"avatar"`
+	Cover     string `json:"cover"`
+	Name      string `json:"name"`
+	SmalCover string `json:"small_cover"`
+}
+
 // AccountsAPI ...
 type AccountsAPI struct {
-	IDAccount  string          `json:"id_account"`
-	IDUser     string          `json:"id_user"`
-	IDExternal string          `json:"id_external"`
-	IDSite     string          `json:"id_site"`
-	Site       json.RawMessage `json:"site"`
-	ISDisable  bool            `json:"is_disable"`
-	Name       string          `json:"name"`
-	Number     string          `json:"number"`
-	Balance    float64         `json:"balance"`
-	DTCreate   string          `json:"dt_create"`
-	DTModify   string          `json:"dt_modify"`
+	IDAccount  string  `json:"id_account"`
+	IDUser     string  `json:"id_user"`
+	IDExternal string  `json:"id_external"`
+	IDSite     string  `json:"id_site"`
+	Site       SiteAPI `json:"site"`
+	ISDisable  bool    `json:"is_disable"`
+	Name       string  `json:"name"`
+	Number     string  `json:"number"`
+	Balance    float64 `json:"balance"`
+	DTCreate   string  `json:"dt_create"`
+	DTModify   string  `json:"dt_modify"`
 }
 
 // TransactionsAPI ...

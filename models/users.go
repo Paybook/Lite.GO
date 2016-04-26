@@ -114,7 +114,7 @@ func (u *User) find() bool {
 	o := orm.NewOrm()
 	err := o.QueryTable("users").Filter("email", u.Email).One(&user)
 	if err == nil {
-		beego.Error("ERR: %v\n", err)
+		beego.Error("ERR: ", err)
 		return false
 	}
 	beego.Info("User info: ", user.ID, user.Email)
