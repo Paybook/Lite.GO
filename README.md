@@ -6,6 +6,7 @@ A very simple and light interface to demonstrate how to take advantage of the Pa
 2. [NodeJS](https://nodejs.org/en/) Stable version 5.10.1
 3. [Bower](http://bower.io)
 4. Paybook Sync API key
+5. **Optional ** sqlite3
 
 ## Install (cli / terminal)
 1. In your $GOPATH/src create **paybook.com** directory 
@@ -40,3 +41,8 @@ pbsync_files_url = "https://s.paybook.com"
 4. Create a new user on Signup [http://localhost:9090/signup](http://localhost:9090/signup)
 5. Login with the new user account [http://localhost:9090/login](http://localhost:9090/login)
 6. Add a site account
+
+## Notes
+If you want to browse the database where the info is saved:
+1. cd **$GOPATH/src/paybook.com/lite**
+2. sqlite3 data.db
