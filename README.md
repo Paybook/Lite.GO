@@ -8,13 +8,13 @@ A very simple and light interface to demonstrate how to take advantage of the Pa
 4. Paybook Sync API key
 
 ## Install (cli / terminal)
-1. In your $GOPATH/src create paybook.com directory 
+1. In your $GOPATH/src create **paybook.com** directory 
 2. cd $GOPATH/src/paybook.com/
-1. git clone https://github.com/Paybook/Lite.GO/ lite
-2. go get github.com/beego/bee
-3. go install paybook.com/lite
-3. cd $GOPATH/src/paybook.com/lite
-4. npm install
+3. git clone https://github.com/Paybook/Lite.GO/ lite
+4. go get github.com/beego/bee
+5. go install paybook.com/lite
+6. cd $GOPATH/src/paybook.com/lite
+7. npm install
 
 ## Configure
 1. Create conf/app.conf file with the following content
@@ -34,9 +34,9 @@ pbsync_files_url = "https://s.paybook.com"
 ```
 
 ## Execute (cli / terminal)
-1. cd $GOPATH/src/paybook.com/lite
-2. Type: bee run
+1. cd **$GOPATH/src/paybook.com/lite**
+2. Type: **bee run**
 3. Test it [http://localhost:9090/](http://localhost:9090/)
-3. Create a new user on Signup [http://localhost:9090/signup](http://localhost:9090/signup)
-4. Login with the new user account [http://localhost:9090/login](http://localhost:9090/login)
-5. Add a site account
+4. Create a new user on Signup [http://localhost:9090/signup](http://localhost:9090/signup)
+5. Login with the new user account [http://localhost:9090/login](http://localhost:9090/login)
+6. Add a site account
