@@ -45,3 +45,6 @@ pbsync_files_url = "https://s.paybook.com"
 ## (Optional) Browse local data base
 1. cd **$GOPATH/src/paybook.com/lite**
 2. sqlite3 data.db
+
+## Notes
+Based on [BeeGo frame work](http://beego.me/)
