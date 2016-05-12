@@ -1,4 +1,4 @@
-# Lite.GO
+# lite-go
 A very simple and light interface to demonstrate how to take advantage of the Paybook Financial API (Sync) to pull information from Mexican Banks and Tax Authority.
 
 ## Requirements
@@ -9,9 +9,9 @@ A very simple and light interface to demonstrate how to take advantage of the Pa
 5. **Optional ** sqlite3
 
 ## Install (cli / terminal)
-1. In your $GOPATH/src create **paybook.com** directory 
+1. In your $GOPATH/src create **paybook.com** directory
 2. cd $GOPATH/src/paybook.com/
-3. git clone https://github.com/Paybook/Lite.GO/ lite
+3. git clone https://github.com/Paybook/lite-go lite
 4. go get github.com/beego/bee
 5. go install paybook.com/lite
 6. cd $GOPATH/src/paybook.com/lite
